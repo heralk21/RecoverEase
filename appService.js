@@ -14,7 +14,6 @@ const dbConfig = {
     poolTimeout: 60
 };
 
-// Initialize connection pool
 async function initializeConnectionPool() {
     try {
         await oracledb.createPool(dbConfig);
@@ -43,7 +42,6 @@ process
     .once('SIGINT', closePoolAndExit);
 
 // ----------------------------------------------------------
-// Wrapper to manage OracleDB actions, simplifying connection handling.
 async function withOracleDB(action) {
     let connection;
     try {
