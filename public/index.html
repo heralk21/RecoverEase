@@ -1,0 +1,314 @@
+<!-- index.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lost and Found Management System</title>
+</head>
+<body>
+
+    <!-- Database Initialization -->
+    <h2>Initialize Database</h2>
+    <button id="initializeDatabaseBtn">Initialize Database</button>
+    <div id="databaseInitializationResultMsg"></div>
+
+    <hr>
+
+    <!-- User Registration -->
+    <h2>User Registration</h2>
+    <form id="userRegistrationForm">
+        Name: <input type="text" id="userName" required><br><br>
+        Email: <input type="email" id="userEmail" required><br><br>
+        Phone: <input type="text" id="userPhone"><br><br>
+        Role: <input type="text" id="userRole" required><br><br>
+        <button type="submit">Register</button>
+    </form>
+    <div id="registrationResultMsg"></div>
+
+    <hr>
+
+    <!-- Category and Location Reference Tables -->
+    <h3>Categories</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Category ID</th>
+                <th>Category Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Categories would be dynamically populated or hardcoded -->
+            <tr><td>1</td><td>Electronics</td></tr>
+            <tr><td>2</td><td>Clothing</td></tr>
+            <tr><td>3</td><td>Accessories</td></tr>
+            <tr><td>4</td><td>Stationery</td></tr>
+            <tr><td>5</td><td>Keys</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Locations</h3>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Location ID</th>
+                <th>Building Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Locations would be dynamically populated or hardcoded -->
+            <tr><td>1</td><td>IKB</td></tr>
+            <tr><td>2</td><td>DMP</td></tr>
+            <tr><td>3</td><td>HA</td></tr>
+            <tr><td>4</td><td>BUCH</td></tr>
+            <tr><td>5</td><td>FSC</td></tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Report Lost Item -->
+    <h2>Report Lost Item</h2>
+    <form id="lostItemForm">
+        Description: <input type="text" id="lostItemDescription" required><br><br>
+        Category ID: <input type="number" id="lostItemCategory" required><br><br>
+        Location ID: <input type="number" id="lostItemLocation" required><br><br>
+        User ID: <input type="number" id="lostItemUserId" required><br><br>
+        <button type="submit">Report Lost Item</button>
+    </form>
+    <div id="lostItemResultMsg"></div>
+
+    <hr>
+
+    <!-- Report Found Item -->
+    <h2>Report Found Item</h2>
+    <form id="foundItemForm">
+        Description: <input type="text" id="foundItemDescription" required><br><br>
+        Category ID: <input type="number" id="foundItemCategory" required><br><br>
+        Location ID: <input type="number" id="foundItemLocation" required><br><br>
+        User ID: <input type="number" id="foundItemUserId" required><br><br>
+        <button type="submit">Report Found Item</button>
+    </form>
+    <div id="foundItemResultMsg"></div>
+
+    <hr>
+
+    <!-- View Lost Items -->
+    <h2>Lost Items</h2>
+    <button id="fetchLostItemsBtn">Fetch Lost Items</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ItemID</th>
+                <th>Description</th>
+                <th>DateReported</th>
+                <th>CategoryName</th>
+                <th>StatusDescription</th>
+                <th>LocationID</th>
+            </tr>
+        </thead>
+        <tbody id="lostItemsTableBody">
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- View Found Items -->
+    <h2>Found Items</h2>
+    <button id="fetchFoundItemsBtn">Fetch Found Items</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ItemID</th>
+                <th>Description</th>
+                <th>DateReported</th>
+                <th>CategoryName</th>
+                <th>StatusDescription</th>
+                <th>LocationID</th>
+            </tr>
+        </thead>
+        <tbody id="foundItemsTableBody">
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Claim Item -->
+    <h2>Claim Item</h2>
+    <form id="claimItemForm">
+        User ID: <input type="number" id="claimUserId" required><br><br>
+        Item ID: <input type="number" id="claimItemId" required><br><br>
+        <button type="submit">Claim Item</button>
+    </form>
+    <div id="claimResultMsg"></div>
+
+    <!-- Display Claim Table -->
+    <h3>Claim Table</h3>
+    <button id="fetchClaimTableBtn">Fetch Claim Table</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ClaimID</th>
+                <th>UserID</th>
+                <th>UserName</th>
+                <th>ItemID</th>
+                <th>ItemDescription</th>
+                <th>ClaimDate</th>
+            </tr>
+        </thead>
+        <tbody id="claimTableBody">
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- View Notifications
+    <h2>Notifications</h2>
+    <form id="fetchNotificationsForm">
+        User ID: <input type="number" id="notificationUserId" required><br><br>
+        <button type="submit">Get Notifications</button>
+    </form>
+    <ul id="notificationList"></ul> -->
+<!-- 
+    <hr> -->
+
+    
+    <!-- Delete Report -->
+    <h2>Delete Report</h2>
+    <form id="deleteReportForm">
+        User ID: <input type="number" id="deleteReportUserId" required><br><br>
+        Item ID: <input type="number" id="deleteReportItemId" required><br><br>
+        <button type="submit">Delete Report</button>
+    </form>
+    <div id="deleteReportResultMsg"></div>
+
+    <hr>
+
+    <!-- Update Item (Multiple Attributes) -->
+    <h2>Update Item</h2>
+    <form id="updateItemForm">
+        Select Item:
+        <select id="updateItemId" required></select><br><br>
+        <!-- Only fill in the fields you want to update -->
+        New Description: <input type="text" id="updateItemDescription"><br><br>
+        New Category ID: <input type="number" id="updateItemCategoryId"><br><br>
+        New Status ID: <input type="number" id="updateItemStatusId"><br><br>
+        New Location ID: <input type="number" id="updateItemLocationId"><br><br>
+        <button type="submit">Update Item</button>
+    </form>
+    <div id="updateItemResultMsg"></div>
+
+    <hr>
+
+    <!-- Search Items (Selection with multiple conditions) -->
+    <h2>Search Items</h2>
+    <form id="searchItemsForm">
+        <div id="conditionContainer"></div>
+        <button type="button" id="addConditionBtn">Add Condition</button><br><br>
+        Logic between conditions:
+        <input type="radio" name="conditionLogic" value="AND" checked>AND
+        <input type="radio" name="conditionLogic" value="OR">OR<br><br>
+        <button type="submit">Search</button>
+    </form>
+    <table border="1">
+        <thead>
+            <tr id="searchResultsHeader"></tr>
+        </thead>
+        <tbody id="searchResultsTableBody">
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Projection: Select Attributes to View -->
+    <h2>View Items with Selected Attributes</h2>
+    <form id="projectionForm">
+        Select Attributes:<br>
+        <input type="checkbox" class="projection-attribute" value="ItemID" checked>ItemID<br>
+        <input type="checkbox" class="projection-attribute" value="Description" checked>Description<br>
+        <input type="checkbox" class="projection-attribute" value="DateReported">DateReported<br>
+        <input type="checkbox" class="projection-attribute" value="CategoryID">CategoryID<br>
+        <input type="checkbox" class="projection-attribute" value="StatusID">StatusID<br>
+        <input type="checkbox" class="projection-attribute" value="LocationID">LocationID<br><br>
+        <button type="submit">Get Items</button>
+    </form>
+    <table border="1">
+        <thead>
+            <tr id="projectionResultsHeader"></tr>
+        </thead>
+        <tbody id="projectionResultsTableBody">
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Get Lost Items Count Per Category -->
+    <h2>Lost Items Count Per Category</h2>
+    <button id="fetchLostItemsCountBtn">Get Lost Items Count</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>CategoryName</th>
+                <th>LostItemCount</th>
+            </tr>
+        </thead>
+        <tbody id="lostItemsCountTableBody">
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Get Categories with Lost Items Over Threshold -->
+    <h2>Categories with Lost Items Over Threshold</h2>
+    <form id="fetchCategoriesWithLostItemsForm">
+        Threshold: <input type="number" id="lostItemsThreshold" required><br><br>
+        <button type="submit">Get Categories</button>
+    </form>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>CategoryName</th>
+                <th>LostItemCount</th>
+            </tr>
+        </thead>
+        <tbody id="categoriesWithLostItemsTableBody">
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Get Top Category Per Building -->
+    <h2>Top Category Per Building</h2>
+    <button id="fetchTopCategoryPerBuildingBtn">Get Top Categories</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>BuildingName</th>
+                <th>CategoryName</th>
+                <th>ItemCount</th>
+            </tr>
+        </thead>
+        <tbody id="topCategoryPerBuildingTableBody">
+        </tbody>
+    </table>
+
+    <hr>
+
+    <!-- Get Users Reporting All Categories -->
+    <h2>Users Reporting All Categories</h2>
+    <button id="fetchUsersReportingAllCategoriesBtn">Get Users</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>UserID</th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody id="usersReportingAllCategoriesTableBody">
+        </tbody>
+    </table>
+
+    <!-- Include the scripts.js file -->
+    <script src="scripts.js"></script>
+</body>
+</html>
